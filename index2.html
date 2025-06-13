@@ -1,0 +1,623 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Content Writer Portfolio | Inkwell Theme</title>
+<style>
+  /* Reset & base */
+  * {
+    box-sizing: border-box;
+  }
+  body {
+    margin: 0; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: #fffaf0;
+    color: #333;
+    line-height: 1.6;
+    scroll-behavior: smooth;
+  }
+  a {
+    color: #f97316; /* orange */
+    text-decoration: none;
+    transition: color 0.3s ease;
+  }
+  a:hover {
+    color: #c85b0b;
+  }
+  h1,h2,h3,h4,h5,h6 {
+    font-family: Georgia, 'Times New Roman', serif;
+    margin-top: 0;
+  }
+  /* Container */
+  .container {
+    max-width: 1200px;
+    padding: 0 20px;
+    margin: 0 auto;
+  }
+  /* Navbar */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    background: white;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+    z-index: 1000;
+  }
+  nav .nav-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 15px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  nav .logo {
+    font-family: Georgia, serif;
+    font-size: 1.75rem;
+    font-weight: bold;
+    color: #f97316;
+  }
+  nav ul {
+    list-style: none;
+    margin: 0; padding: 0;
+    display: flex;
+    gap: 30px;
+  }
+  nav ul li a {
+    font-weight: 600;
+  }
+
+  /* Responsive nav */
+  @media (max-width: 768px) {
+    nav ul {
+      display: none;
+    }
+  }
+
+  /* Hero */
+  #home {
+    min-height: 100vh;
+    padding-top: 80px; /* navbar height */
+    background: linear-gradient(to bottom, #fff3e0, #fff);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+  #home h1 {
+    font-size: 3.5rem;
+    color: #f97316;
+    margin-bottom: 20px;
+  }
+  #typewriter-text {
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: #555;
+    border-right: 2px solid #f97316;
+    white-space: nowrap;
+    overflow: hidden;
+  }
+  /* Buttons */
+  .btn {
+    display: inline-block;
+    padding: 12px 28px;
+    font-weight: 600;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    margin: 10px 10px 0 10px;
+    text-decoration: none;
+  }
+  .btn-primary {
+    background-color: #f97316;
+    color: white;
+    border: none;
+  }
+  .btn-primary:hover {
+    background-color: #c85b0b;
+  }
+  .btn-outline {
+    background: none;
+    border: 2px solid #f97316;
+    color: #f97316;
+  }
+  .btn-outline:hover {
+    background-color: #fff3e0;
+  }
+
+  /* Sections */
+  section {
+    padding: 60px 20px;
+  }
+  section h2 {
+    color: #f97316;
+    font-size: 2.75rem;
+    text-align: center;
+    margin-bottom: 40px;
+  }
+
+  /* About Me */
+  #about .content {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 30px;
+    max-width: 1000px;
+    margin: 0 auto;
+    align-items: center;
+  }
+  #about img {
+    border-radius: 10px;
+    width: 280px;
+    height: 280px;
+    object-fit: cover;
+    box-shadow: 0 8px 20px rgba(249,115,22,0.3);
+  }
+  #about .text {
+    flex: 1 1 400px;
+    color: #555;
+    font-size: 1.1rem;
+  }
+  #about .text p {
+    margin-bottom: 15px;
+  }
+  /* Skill Bars */
+  .skill {
+    max-width: 500px;
+    margin: 0 auto 25px auto;
+  }
+  .skill-label {
+    display: flex;
+    justify-content: space-between;
+    font-weight: 600;
+    margin-bottom: 6px;
+    color: #555;
+  }
+  .skill-bar-bg {
+    background: #ddd;
+    border-radius: 20px;
+    overflow: hidden;
+    height: 20px;
+  }
+  .skill-bar-fill {
+    height: 20px;
+    background-color: #f97316;
+    width: 0%;
+    border-radius: 20px;
+    transition: width 2s ease;
+  }
+
+  /* Portfolio */
+  #portfolio .grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit,minmax(280px,1fr));
+    gap: 25px;
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+  .portfolio-card {
+    background: white;
+    border-radius: 10px;
+    padding: 25px;
+    box-shadow: 0 6px 18px rgba(0,0,0,0.1);
+    transition: all 0.3s ease;
+  }
+  .portfolio-card:hover {
+    box-shadow: 0 10px 28px rgba(249,115,22,0.3);
+    transform: translateY(-5px);
+  }
+  .portfolio-card h3 {
+    color: #f97316;
+    margin-bottom: 15px;
+    font-weight: 700;
+  }
+  .portfolio-card p {
+    margin-bottom: 15px;
+    color: #555;
+  }
+  .portfolio-card a {
+    font-weight: 600;
+    color: #f97316;
+  }
+
+  /* Services */
+  #services .grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit,minmax(220px,1fr));
+    gap: 25px;
+    max-width: 1100px;
+    margin: 0 auto;
+    text-align: center;
+    color: #555;
+  }
+  .service-card {
+    background: white;
+    border-radius: 10px;
+    padding: 25px;
+    box-shadow: 0 6px 18px rgba(0,0,0,0.1);
+    transition: all 0.3s ease;
+  }
+  .service-card:hover {
+    box-shadow: 0 10px 28px rgba(249,115,22,0.3);
+    transform: translateY(-5px);
+  }
+  .service-icon {
+    font-size: 3.5rem;
+    margin-bottom: 15px;
+    color: #f97316;
+  }
+  .service-card h3 {
+    font-weight: 700;
+    margin-bottom: 10px;
+    color: #f97316;
+  }
+
+  /* Testimonials */
+  #testimonials {
+    background-color: #fff3e0;
+  }
+  #testimonials .container {
+    max-width: 900px;
+  }
+  #testimonial-carousel {
+    display: flex;
+    gap: 30px;
+    overflow: hidden;
+  }
+  .testimonial-card {
+    background: white;
+    border-radius: 10px;
+    padding: 25px;
+    box-shadow: 0 6px 18px rgba(0,0,0,0.1);
+    min-width: 280px;
+    flex-shrink: 0;
+    text-align: center;
+  }
+  .testimonial-photo {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin: 0 auto 15px;
+    box-shadow: 0 4px 10px rgba(249,115,22,0.4);
+  }
+  .testimonial-quote {
+    font-style: italic;
+    margin-bottom: 15px;
+    color: #444;
+  }
+  .testimonial-name {
+    font-weight: 700;
+    color: #f97316;
+  }
+  .testimonial-role {
+    color: #777;
+    font-size: 0.9rem;
+  }
+
+  /* Contact */
+  #contact form {
+    max-width: 600px;
+    margin: 0 auto;
+    background: white;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 6px 18px rgba(0,0,0,0.1);
+  }
+  #contact form label {
+    display: block;
+    font-weight: 600;
+    margin-bottom: 6px;
+    color: #555;
+  }
+  #contact form input,
+  #contact form textarea,
+  #contact form select {
+    width: 100%;
+    padding: 12px;
+    margin-bottom: 20px;
+    border-radius: 6px;
+    border: 1.5px solid #ccc;
+    font-size: 1rem;
+    transition: border-color 0.3s ease;
+  }
+  #contact form input:focus,
+  #contact form textarea:focus,
+  #contact form select:focus {
+    outline: none;
+    border-color: #f97316;
+  }
+  #contact form textarea {
+    resize: vertical;
+    min-height: 120px;
+  }
+  #contact form button {
+    background-color: #f97316;
+    color: white;
+    padding: 15px 0;
+    font-weight: 700;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    width: 100%;
+    transition: background-color 0.3s ease;
+  }
+  #contact form button:hover {
+    background-color: #c85b0b;
+  }
+
+  /* Footer */
+  footer {
+    text-align: center;
+    padding: 25px 15px;
+    background: #f97316;
+    color: white;
+    font-weight: 600;
+  }
+
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-container container">
+    <a href="#home" class="logo">Inkwell</a>
+    <ul>
+      <li><a href="#about">About Me</a></li>
+      <li><a href="#skills">Skills</a></li>
+      <li><a href="#portfolio">Portfolio</a></li>
+      <li><a href="#services">Services</a></li>
+      <li><a href="#testimonials">Testimonials</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </div>
+</nav>
+
+<section id="home">
+  <h1>Hi, I'm Sarah.</h1>
+  <div id="typewriter-text"></div>
+  <div>
+    <a href="#portfolio" class="btn btn-primary">View Portfolio</a>
+    <a href="#contact" class="btn btn-outline">Hire Me</a>
+  </div>
+</section>
+
+<section id="about">
+  <h2>About Me</h2>
+  <div class="content">
+    <img src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&w=300&q=80" alt="Sarah Writer">
+    <div class="text">
+      <p>I'm Sarah, a professional content writer passionate about creating engaging, clear, and compelling content. With over 7 years of experience, I specialize in blogs, articles, copywriting, and SEO-driven content.</p>
+      <p>Whether you need persuasive product descriptions or detailed how-to guides, I ensure every word resonates with your audience. Let’s tell your story together!</p>
+    </div>
+  </div>
+</section>
+
+<section id="skills">
+  <h2>Skills</h2>
+  <div class="container">
+    <div class="skill">
+      <div class="skill-label">
+        <span>SEO Writing</span><span>95%</span>
+      </div>
+      <div class="skill-bar-bg">
+        <div class="skill-bar-fill" data-percent="95"></div>
+      </div>
+    </div>
+    <div class="skill">
+      <div class="skill-label">
+        <span>Copywriting</span><span>90%</span>
+      </div>
+      <div class="skill-bar-bg">
+        <div class="skill-bar-fill" data-percent="90"></div>
+      </div>
+    </div>
+    <div class="skill">
+      <div class="skill-label">
+        <span>Blog Writing</span><span>88%</span>
+      </div>
+      <div class="skill-bar-bg">
+        <div class="skill-bar-fill" data-percent="88"></div>
+      </div>
+    </div>
+    <div class="skill">
+      <div class="skill-label">
+        <span>Technical Writing</span><span>85%</span>
+      </div>
+      <div class="skill-bar-bg">
+        <div class="skill-bar-fill" data-percent="85"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="portfolio">
+  <h2>Portfolio</h2>
+  <div class="grid">
+    <div class="portfolio-card">
+      <h3>Boosting Organic Traffic</h3>
+      <p>Created SEO-optimized blog series for a tech startup, increasing organic traffic by 45% in 3 months.</p>
+      <a href="#" target="_blank" rel="noopener noreferrer">View Project</a>
+    </div>
+    <div class="portfolio-card">
+      <h3>Product Descriptions for E-commerce</h3>
+      <p>Developed persuasive product descriptions that helped improve conversions by 30% for an online fashion store.</p>
+      <a href="#" target="_blank" rel="noopener noreferrer">View Project</a>
+    </div>
+    <div class="portfolio-card">
+      <h3>Technical Whitepaper</h3>
+      <p>Authored a detailed whitepaper on cloud computing technologies for a leading IT firm.</p>
+      <a href="#" target="_blank" rel="noopener noreferrer">View Project</a>
+    </div>
+    <div class="portfolio-card">
+      <h3>Health & Wellness Blog</h3>
+      <p>Wrote engaging, research-based articles on nutrition and wellness for a popular health website.</p>
+      <a href="#" target="_blank" rel="noopener noreferrer">View Project</a>
+    </div>
+  </div>
+</section>
+
+<section id="services">
+  <h2>Services</h2>
+  <div class="grid">
+    <div class="service-card">
+      <div class="service-icon">✍️</div>
+      <h3>Content Writing</h3>
+      <p>SEO-friendly blog posts, articles, and web content tailored to your audience.</p>
+    </div>
+    <div class="service-card">
+      <div class="service-icon">🛒</div>
+      <h3>Copywriting</h3>
+      <p>Persuasive product descriptions and marketing copy that convert visitors into customers.</p>
+    </div>
+    <div class="service-card">
+      <div class="service-icon">📄</div>
+      <h3>Technical Writing</h3>
+      <p>Clear and concise manuals, whitepapers, and reports for complex subjects.</p>
+    </div>
+    <div class="service-card">
+      <div class="service-icon">🔍</div>
+      <h3>SEO Optimization</h3>
+      <p>Keyword research and content strategies that help you rank higher in search engines.</p>
+    </div>
+  </div>
+</section>
+
+<section id="testimonials">
+  <h2>Testimonials</h2>
+  <div class="container" id="testimonial-carousel">
+    <div class="testimonial-card">
+      <img src="https://randomuser.me/api/portraits/women/44.jpg" alt="Client Photo" class="testimonial-photo" />
+      <p class="testimonial-quote">"Sarah’s writing brought our brand’s story to life. Her SEO skills boosted our website’s traffic immensely."</p>
+      <p class="testimonial-name">- Emily R.</p>
+      <p class="testimonial-role">Marketing Director, TechStart</p>
+    </div>
+    <div class="testimonial-card">
+      <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="Client Photo" class="testimonial-photo" />
+      <p class="testimonial-quote">"Highly professional and delivered on time. The product descriptions improved our sales significantly."</p>
+      <p class="testimonial-name">- Michael T.</p>
+      <p class="testimonial-role">Founder, StyleHub</p>
+    </div>
+    <div class="testimonial-card">
+      <img src="https://randomuser.me/api/portraits/women/65.jpg" alt="Client Photo" class="testimonial-photo" />
+      <p class="testimonial-quote">"Her whitepaper was clear and detailed, exactly what our IT team needed to explain our new solution."</p>
+      <p class="testimonial-name">- Anika S.</p>
+      <p class="testimonial-role">Product Manager, CloudTech</p>
+    </div>
+  </div>
+</section>
+
+<section id="contact">
+  <h2>Contact Me</h2>
+  <form id="contactForm" novalidate>
+    <label for="name">Name *</label>
+    <input type="text" id="name" name="name" placeholder="Your full name" required minlength="3" />
+
+    <label for="email">Email *</label>
+    <input type="email" id="email" name="email" placeholder="your.email@example.com" required />
+
+    <label for="profession">Profession *</label>
+    <select id="profession" name="profession" required>
+      <option value="" disabled selected>Select your profession</option>
+      <option value="student">Student</option>
+      <option value="business">Business</option>
+      <option value="developer">Developer</option>
+      <option value="marketer">Marketer</option>
+      <option value="other">Other</option>
+    </select>
+
+    <label for="message">Message *</label>
+    <textarea id="message" name="message" placeholder="Write your message here" required minlength="10"></textarea>
+
+    <button type="submit">Send Message</button>
+  </form>
+</section>
+
+<footer>
+  &copy; 2025 Sarah Writer. All rights reserved.
+</footer>
+
+<script>
+  // Typewriter effect for hero section
+  const typewriterText = document.getElementById('typewriter-text');
+  const phrases = [
+    "Creative content that tells your story.",
+    "Engaging blogs to boost your brand.",
+    "SEO writing that drives traffic.",
+    "Copy that converts visitors into customers."
+  ];
+  let currentPhraseIndex = 0;
+  let currentCharIndex = 0;
+  let isDeleting = false;
+  let typingSpeed = 80;
+  let pauseTime = 2000;
+
+  function type() {
+    let currentPhrase = phrases[currentPhraseIndex];
+    if (isDeleting) {
+      currentCharIndex--;
+      typewriterText.textContent = currentPhrase.substring(0, currentCharIndex);
+      if (currentCharIndex === 0) {
+        isDeleting = false;
+        currentPhraseIndex = (currentPhraseIndex + 1) % phrases.length;
+        setTimeout(type, 500);
+      } else {
+        setTimeout(type, typingSpeed / 2);
+      }
+    } else {
+      currentCharIndex++;
+      typewriterText.textContent = currentPhrase.substring(0, currentCharIndex);
+      if (currentCharIndex === currentPhrase.length) {
+        isDeleting = true;
+        setTimeout(type, pauseTime);
+      } else {
+        setTimeout(type, typingSpeed);
+      }
+    }
+  }
+  type();
+
+  // Animate skill bars on scroll
+  function animateSkills() {
+    const skills = document.querySelectorAll('.skill-bar-fill');
+    const triggerBottom = window.innerHeight * 0.9;
+
+    skills.forEach(skill => {
+      const skillTop = skill.getBoundingClientRect().top;
+      if(skillTop < triggerBottom) {
+        skill.style.width = skill.getAttribute('data-percent') + '%';
+      }
+    });
+  }
+  window.addEventListener('scroll', animateSkills);
+  // Initial run
+  animateSkills();
+
+  // Simple testimonial carousel (auto scroll horizontally)
+  const carousel = document.getElementById('testimonial-carousel');
+  let scrollAmount = 0;
+  function autoScrollCarousel() {
+    scrollAmount += 1;
+    if(scrollAmount >= carousel.scrollWidth - carousel.clientWidth) {
+      scrollAmount = 0;
+    }
+    carousel.scrollLeft = scrollAmount;
+  }
+  setInterval(autoScrollCarousel, 30);
+
+  // Contact form validation & submission
+  const contactForm = document.getElementById('contactForm');
+  contactForm.addEventListener('submit', function(e){
+    e.preventDefault();
+    if(contactForm.checkValidity()) {
+      alert('Thank you for your message! I will get back to you soon.');
+      contactForm.reset();
+    } else {
+      alert('Please fill all the required fields correctly.');
+    }
+  });
+</script>
+
+</body>
+</html>
